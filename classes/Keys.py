@@ -5,6 +5,7 @@ from kivy.core.window import Window
 
 
 
+
 class Keys(Widget):
     map_keys = []
     base_keys = None
@@ -38,96 +39,74 @@ class Keys(Widget):
         try:
             keys = []
             while len(keys) < 9:
-                keys.append(randint(self.min_key_value, self.max_key_value))
+                key = randint(self.min_key_value, self.max_key_value)
+                keys.append(key) if int(str(key)[:1]) > 1  and len(str(key)) > 2 else None
             return keys
         
         except Exception as e:
             print("\n\nError in 'Keys' Class - 'random_keys' Function", e) 
 
 
-    def traverse(self):
+    def explore(self):
         try:
             x = App.get_running_app().main.map.current_coords[0]
             y = App.get_running_app().main.map.current_coords[1]
 
+            print("\n\n=============================\n")
+
+            print("\n\ncoords")
+            print(str(x), ", ", str(y))
+            App.get_running_app().main.proof.coords = [x, y]
+
             if x == 0 and y == 0:
+                print("\n\nreturned home")
                 self.map_keys = self.base_keys
                 return True
             
-            if x == 0 and y > 0:
-                x = int(str(self.base_keys[0])[:1])
-                y = int(str(self.base_keys[len(self.base_keys)-1])[:1])
+            if x == 0 and y > 1:
+                x = int(str(self.base_keys[0])[:2])
             
-            if x == 0 and y < 0:
-                x = int(str(self.base_keys[1])[:1])
-                y = int(str(self.base_keys[len(self.base_keys)-2])[:1])
+            if x == 0 and y < -1:
+                x = int(str(self.base_keys[1])[:2])
 
-            if x > 0 and y == 0:
-                y = int(str(self.base_keys[2])[:1])
+            if x == 0 and abs(y) == 1:
+                x = int(str(self.base_keys[5])[:2])
 
-            if x < 0 and y == 0:
-                y = int(str(self.base_keys[3])[:1])   
+            if x > 1 and y == 0:
+                y = int(str(self.base_keys[2])[:2])
+
+            if x < -1 and y == 0:
+                y = int(str(self.base_keys[3])[:2]) 
+
+            if abs(x) == 1 and y == 0:
+                y = int(str(self.base_keys[6])[:2])   
 
             if x + y == 0:
-                x = abs(x)
-                y = int(str(self.base_keys[4])[:1])    
-
-            keys = []
-
-            i = 0
-            while len(keys) < self.key_size:
-                num = self.base_keys[i] * ((10-x-i) + y) * (10-x-i)
-                new_num = num
-                while new_num > self.max_key_value:
-                    new_num = new_num - self.max_key_value
-                num = abs(new_num)
-                keys.append(num)
-                i += 1
-
-            self.map_keys = keys    
-
-        except Exception as e:
-            print("\n\nError in 'Keys' Class - 'traverse' Function", e) 
-    
-
-    def reverse(self):
-        try:
-            x = App.get_running_app().main.map.current_coords[0]
-            y = App.get_running_app().main.map.current_coords[1]
-
-            if x == 0 and y == 0:
-                self.map_keys = self.base_keys
-                return True
-            
-            if x == 0 and y > 0:
-                x = int(str(self.base_keys[0])[:1])
-            
-            if x == 0 and y < 0:
-                x = int(str(self.base_keys[1])[:1])
-
-            if x > 0 and y == 0:
-                y = int(str(self.base_keys[2])[:1])
-
-            if x < 0 and y == 0:
-                y = int(str(self.base_keys[3])[:1])   
-
-            if x + y == 0:
-                x = abs(x)
-                y = int(str(self.base_keys[4])[:1])     
+                x = abs(x) * 7 if x > 0 else int(str(self.base_keys[7])[:2]) 
+                y = abs(y) * 5 if y > 0 else int(str(self.base_keys[4])[:1])   
             
             keys = []
 
             i = 0
             while len(keys) < self.key_size:
-                num = abs(self.base_keys[i] * (x + (10-y-i)) * (10-y-i))
+                num = self.base_keys[i] * ((55-x-i) + y) * (15-x-i)
                 new_num = num
                 while new_num > self.max_key_value:
                     new_num = new_num - self.max_key_value
                 num = abs(new_num)
-                keys.append(num)
+                keys.append(num) 
                 i += 1
 
             self.map_keys = keys
 
+            print("\n\nmap keys")
+            print(str(self.map_keys))
+
+            App.get_running_app().main.proof.explore_data()
+
+            print("\n\n=============================\n")
+
         except Exception as e:
             print("\n\nError in 'Keys' Class - 'reverse' Function", e) 
+
+

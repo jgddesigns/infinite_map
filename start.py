@@ -19,10 +19,7 @@ class InfiniteMap(App):
     main = None
 
 
-
-
     Builder.load_file("main.kv")
-
 
 
 
@@ -43,5 +40,6 @@ class InfiniteMap(App):
 
 if __name__ == "__main__":
     InfiniteMap().run()
+
 
 

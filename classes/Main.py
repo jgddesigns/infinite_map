@@ -9,6 +9,7 @@ from classes.Keys import Keys
 from classes.Draw import Draw
 from classes.Player import Player
 from classes.Map import Map
+from classes.Proof import Proof
 
 
 class Main(Widget):
@@ -16,6 +17,7 @@ class Main(Widget):
     draw = None
     player = None
     map = None
+    proof = None
     classes = None
     app = None
 
@@ -34,6 +36,7 @@ class Main(Widget):
             self.draw = Draw()
             self.player = Player()
             self.map = Map()
+            self.proof = Proof()
 
             self.add_widget(self.key)
             self.add_widget(self.draw)
@@ -80,6 +83,12 @@ class Main(Widget):
 
             if keycode[1] == 'down':
                 self.player.pos[1] -= 25
+
+            if keycode[1] == "x":
+                self.proof.show_proof()
+
+            if keycode[1] == "f":
+                self.proof.output()
 
             self.player_move(self.player.pos[0], self.player.pos[1], prev_x, prev_y)
 
