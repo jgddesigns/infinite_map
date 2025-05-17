@@ -55,7 +55,7 @@ class Proof(Widget):
                         print("\n\n\n\nSHOWING PROOF...\n\n\n\n")
 
                         if len(self.matching_data) < 1:
-                                print("\n\nThere is no proof.")
+                                print("\n\nNo maps have been revisited.")
 
                         i = 1
                         for data in self.matching_data:
