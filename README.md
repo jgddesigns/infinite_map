@@ -1,6 +1,20 @@
 Infinite map within a finite amount of memory. All locations stay the same. 
 
 
+
+Git and Python 3.11 are required to test the demo. Currently on tested on Windows.
+
+To install, ChatGPT or Google search:
+
+'install git on my computer'
+'install Python 3.11 on my computer'
+
+Then, open a cmd terminal in your desired folder and enter 'git clone https://www.github.com/jgddesigns/infinite_map'.
+
+The app runs on the 'start.py' file in the project's root directory.
+
+
+
 Concepts:
 
     - A list of random numbers is generated when the game starts.
