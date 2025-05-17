@@ -5,7 +5,7 @@ Concepts:
 
     - A list of random numbers is generated when the game starts.
 
-    - Sprite randomization is based on the initial random number grid and the current player coordinates. A new number list is generated each time the screen changes (when the player leaves the screen)
+    - Sprite randomization is based on the initial random number grid and the current player coordinates. A new number list is generated each time the screen changes (when the player leaves the screen).
 
     - Calculations for sprite type, position and color are determined by the numbers in the number list. In certain cases, numbers from the original list are used. 
 
@@ -42,8 +42,6 @@ Notes:
     - When testing the theory, consider that the only way no matching maps could exist is if the number range used for the keys is incremented based on user coordinates and has no limit. This would allow for more precise calculations. Still, considering constraints such as the size of each map area, and sprite variables such as colors and shapes, there would be a limited amount of randomizations even with an infinite range of calculation keys. 
     
     - Perhaps there could technically be unlimited colors or shapes, but eventually the nuances would be so small that nobody could tell the difference. For example, if the shade in a sprite's rgba value is .000000001 different than the next most comparable object, and all other variables have similar properties.
-
-
 
 
 
